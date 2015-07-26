@@ -1,13 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
-# `makeCacheMatrix`: This function creates a special "matrix" object
-# that can cache its inverse.
-##
+## makeCacheMatrix`: This function creates a special "matrix" object
+## that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
-  #deveria funcionar assim mesmo, mesma estrutura do exemplo com vetor
+  #Same structure of a vector but with a matrix object
   Inv <- NULL
   set <- function(y) {
     x <<- y
@@ -22,27 +17,23 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-# `cacheSolve`: This function computes the inverse of the special
+## cacheSolve: This function computes the inverse of the special
 # "matrix" returned by `makeCacheMatrix` above. If the inverse has
 # already been calculated (and the matrix has not changed), then
 # `cacheSolve` should retrieve the inverse from the cache.
 ##
 
-
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  
-  
-  # Exemplo média de um vetor
-  m <- x$getmean()
-  if(!is.null(m)) {
+  Inv <- x$getInv()
+  if(!is.null(Inv)) {
     message("getting cached data")
-    return(m)
-  }
+    return(Inv)
+    }    
   data <- x$get()
-  m <- mean(data, ...)
-  x$setmean(m)
-  m
+  Inv <- solve(data, ...)
+  x$setInv(Inv)
+  Inv
+  
   
 }
